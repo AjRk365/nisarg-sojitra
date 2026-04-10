@@ -1,153 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Nisarg Sir - Math Legend</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nisarg Sojitra — Math Legend</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: black;
-      color: gold;
-      text-align: center;
-      overflow: hidden;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f8f7ff; color: #1a1a2e; }
 
-    h1 {
-      font-size: 3rem;
-      margin-top: 50px;
-      text-shadow: 0 0 20px gold;
-    }
+    .ticker { background: #534AB7; color: #eeedfe; font-size: 13px; padding: 9px 0; overflow: hidden; white-space: nowrap; }
+    .ticker-inner { display: inline-block; animation: scroll 30s linear infinite; }
+    @keyframes scroll { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
 
-    .box {
-      margin-top: 40px;
-    }
+    .hero { text-align: center; padding: 3rem 1rem 2rem; }
+    .avatar { width: 110px; height: 110px; border-radius: 50%; background: #eeedfe; border: 3px solid #7F77DD; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 1rem; color: #3C3489; font-weight: 600; }
+    .badge { display: inline-block; background: #E1F5EE; color: #0F6E56; font-size: 12px; padding: 4px 14px; border-radius: 99px; border: 1px solid #1D9E75; margin-bottom: 0.75rem; }
+    h1 { font-size: 30px; font-weight: 700; margin-bottom: 0.4rem; }
+    .subtitle { font-size: 15px; color: #666; margin-bottom: 1.5rem; }
 
-    button {
-      background: gold;
-      border: none;
-      padding: 15px 25px;
-      font-size: 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 10px;
-      transition: 0.3s;
-    }
+    .counter-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 1rem 2rem; }
+    .counter-card { text-align: center; background: white; border-radius: 12px; padding: 1rem 1.5rem; box-shadow: 0 1px 6px rgba(0,0,0,0.07); min-width: 110px; }
+    .counter-num { font-size: 28px; font-weight: 700; color: #534AB7; }
+    .counter-label { font-size: 12px; color: #888; }
 
-    button:hover {
-      background: orange;
-      transform: scale(1.1);
-    }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; padding: 0 1.5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .card { background: white; border-radius: 14px; padding: 1.25rem; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .card-icon { font-size: 26px; margin-bottom: 8px; }
+    .card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .card p { font-size: 13px; color: #666; line-height: 1.6; }
 
-    #joke {
-      margin-top: 30px;
-      font-size: 22px;
-      min-height: 50px;
-    }
+    .equation-box { margin: 0 1.5rem 2rem; max-width: 860px; margin-left: auto; margin-right: auto; background: white; border-radius: 14px; padding: 1.5rem; text-align: center; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .eq-label { font-size: 12px; color: #999; }
+    .equation { font-family: 'Courier New', monospace; font-size: 20px; color: #534AB7; font-weight: 700; margin: 0.6rem 0; }
+    .btn { display: inline-block; margin-top: 0.75rem; background: #EEEDFE; color: #3C3489; border: 1px solid #7F77DD; border-radius: 8px; padding: 8px 20px; font-size: 14px; cursor: pointer; font-weight: 600; }
+    .btn:hover { background: #CECBF6; }
 
-    /* Power bar */
-    .power-container {
-      width: 80%;
-      height: 30px;
-      background: #222;
-      margin: 30px auto;
-      border-radius: 20px;
-      overflow: hidden;
-    }
+    .roast-box { margin: 0 1.5rem 2rem; max-width: 860px; margin-left: auto; margin-right: auto; background: #FAEEDA; border: 1px solid #EF9F27; border-radius: 14px; padding: 1.5rem; }
+    .roast-box h2 { font-size: 16px; font-weight: 600; color: #633806; margin-bottom: 0.75rem; }
+    .roast-item { font-size: 14px; color: #854F0B; line-height: 1.8; padding: 5px 0; border-bottom: 1px dashed #FAC775; }
+    .roast-item:last-child { border-bottom: none; }
 
-    .power-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(to right, red, orange, gold);
-      text-align: right;
-      padding-right: 10px;
-      line-height: 30px;
-      color: black;
-      font-weight: bold;
-    }
-
-    /* glitter dots */
-    .sparkle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: gold;
-      border-radius: 50%;
-      pointer-events: none;
-      animation: fade 1s linear forwards;
-    }
-
-    @keyframes fade {
-      to {
-        opacity: 0;
-        transform: scale(2);
-      }
-    }
+    .tribute { text-align: center; padding: 1rem 1.5rem 3rem; max-width: 520px; margin: 0 auto; }
+    .tribute p { font-size: 14px; color: #666; line-height: 1.8; margin-bottom: 0.75rem; }
+    .star { color: #EF9F27; font-size: 20px; }
+    .emoji-row { font-size: 22px; letter-spacing: 6px; margin: 1rem 0; }
   </style>
 </head>
-
 <body>
 
-  <h1>🔥 Nisarg Sojitra 🔥</h1>
-  <h2>The Math Expert Who Scares Calculators 😎</h2>
+<div class="ticker">
+  <span class="ticker-inner">
+    &nbsp;&nbsp;&nbsp; BREAKING: Nisarg Sojitra solves another unsolvable problem &nbsp;|&nbsp; Local man reportedly dreams in calculus &nbsp;|&nbsp; Pi has filed a restraining order &nbsp;|&nbsp; Calculator found crying in corner &nbsp;|&nbsp;
+  </span>
+</div>
 
-  <div class="box">
-    <button onclick="showJoke()">Tell a Truth 😆</button>
-    <button onclick="increasePower()">Check Math Power 💪</button>
-  </div>
+<div class="hero">
+  <div class="avatar">NS</div>
+  <span class="badge">Team Leader · Math Wizard · Human Calculator</span>
+  <h1>Nisarg Sojitra</h1>
+  <p class="subtitle">The only person who finds quadratic equations "relaxing" 😩</p>
+  <div class="emoji-row">🧮 📐 ➗ 🔢 📏</div>
+</div>
 
-  <div id="joke"></div>
+<div class="counter-grid">
+  <div class="counter-card"><div class="counter-num" id="c1">0</div><div class="counter-label">equations solved today</div></div>
+  <div class="counter-card"><div class="counter-num" id="c2">0</div><div class="counter-label">times said "it's simple"</div></div>
+  <div class="counter-card"><div class="counter-num" id="c3">0</div><div class="counter-label">coffee cups consumed</div></div>
+</div>
 
-  <div class="power-container">
-    <div class="power-bar" id="powerBar">0%</div>
-  </div>
+<div class="cards">
+  <div class="card"><div class="card-icon">🧠</div><h3>Big Brain Energy</h3><p>Can recite pi to 15 digits but definitely can't remember your birthday.</p></div>
+  <div class="card"><div class="card-icon">📊</div><h3>Excel? Child's Play.</h3><p>Does Excel formulas in his sleep. He once argued with a calculator — and won.</p></div>
+  <div class="card"><div class="card-icon">🕐</div><h3>Always On Time</h3><p>Calculates exact meeting arrival time. Still somehow always 2 minutes early.</p></div>
+  <div class="card"><div class="card-icon">🤖</div><h3>Human Algorithm</h3><p>Gives instructions so precise, the team suspects he secretly runs on C++.</p></div>
+</div>
 
-  <script>
-    const jokes = [
-      "Nisarg Sir doesn’t solve math… math solves itself in fear 😎",
-      "Calculator uses Nisarg Sir for verification 😏",
-      "Even infinity asked Nisarg Sir for definition 🤯",
-      "Students: Sir doubt… Sir: Already solved in my mind 😌",
-      "Google searches answers… Nisarg Sir IS the answer 🔥",
-      "When Sir enters class, even π becomes rational 😂"
-    ];
+<div class="equation-box">
+  <div class="eq-label">Today's wisdom from Nisarg</div>
+  <div class="equation" id="eq">Nisarg = ∑(genius) + lim(patience → ∞)</div>
+  <div class="eq-label" id="eq-sub">proof left as exercise to the reader</div>
+  <br/>
+  <button class="btn" onclick="nextEquation()">Next equation ↻</button>
+</div>
 
-    function showJoke() {
-      const random = jokes[Math.floor(Math.random() * jokes.length)];
-      document.getElementById("joke").innerText = random;
+<div class="roast-box">
+  <h2>Things Nisarg has actually said (probably) 🔥</h2>
+  <div class="roast-item">"It's just basic algebra, why is this confusing?"</div>
+  <div class="roast-item">"Let me draw a quick graph to explain..." (draws 3 graphs)</div>
+  <div class="roast-item">"The answer is obviously 42. Did you not derive it?"</div>
+  <div class="roast-item">"I'll do it myself, it'll only take 5 minutes." (spoiler: 5 = hours)</div>
+  <div class="roast-item">"I don't use a calculator. Calculators use me."</div>
+</div>
+
+<div class="tribute">
+  <p class="star">★★★★★</p>
+  <p>In all seriousness — Nisarg is the kind of leader who makes the impossible look routine, carries the whole team on his math-shaped shoulders, and explains things clearly to us mere mortals.</p>
+  <p>Thanks for being the brain we all secretly borrow from. 🙏</p>
+  <p style="font-size:13px; color:#aaa;">Made with love (and a bit of fear) by your team ❤️</p>
+</div>
+
+<script>
+  const equations = [
+    { eq: "Nisarg = ∑(genius) + lim(patience → ∞)", sub: "proof left as exercise to the reader" },
+    { eq: "Workload(team) = Workload(Nisarg) × 0.1", sub: "he carries the rest" },
+    { eq: "IQ(Nisarg) > IQ(everyone) + π²", sub: "statistically verified" },
+    { eq: "Bugs(code) → 0  as Nisarg → keyboard", sub: "convergence theorem" },
+    { eq: "Meeting duration = ε (when Nisarg prepares)", sub: "epsilon-delta definition of efficiency" },
+    { eq: "Respect = ∫₀^∞ effort dt", sub: "and his integral diverges (the good way)" },
+  ];
+  let eqIdx = 0;
+  function nextEquation() {
+    eqIdx = (eqIdx + 1) % equations.length;
+    document.getElementById('eq').textContent = equations[eqIdx].eq;
+    document.getElementById('eq-sub').textContent = equations[eqIdx].sub;
+  }
+
+  function animateCounter(id, target, duration) {
+    let startTime = null;
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      const progress = Math.min((ts - startTime) / duration, 1);
+      document.getElementById(id).textContent = Math.floor(progress * target);
+      if (progress < 1) requestAnimationFrame(step);
     }
-
-    let power = 0;
-
-    function increasePower() {
-      power += Math.floor(Math.random() * 30) + 10;
-      if (power > 100) power = 100;
-
-      const bar = document.getElementById("powerBar");
-      bar.style.width = power + "%";
-      bar.innerText = power + "%";
-
-      if (power === 100) {
-        document.getElementById("joke").innerText =
-          "⚡ MAX POWER! Nisarg Sir has reached GOD MODE 🚀";
-      }
-    }
-
-    // glitter effect
-    document.addEventListener("mousemove", function(e) {
-      const sparkle = document.createElement("div");
-      sparkle.className = "sparkle";
-      sparkle.style.left = e.pageX + "px";
-      sparkle.style.top = e.pageY + "px";
-
-      document.body.appendChild(sparkle);
-
-      setTimeout(() => {
-        sparkle.remove();
-      }, 1000);
-    });
-  </script>
-
+    requestAnimationFrame(step);
+  }
+  animateCounter('c1', 47, 1200);
+  animateCounter('c2', 23, 1400);
+  animateCounter('c3', 8, 1000);
+</script>
 </body>
 </html>

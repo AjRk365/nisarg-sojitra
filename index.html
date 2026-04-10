@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nisarg Sir - Math Legend</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: gold;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 50px;
+      text-shadow: 0 0 20px gold;
+    }
+
+    .box {
+      margin-top: 40px;
+    }
+
+    button {
+      background: gold;
+      border: none;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: orange;
+      transform: scale(1.1);
+    }
+
+    #joke {
+      margin-top: 30px;
+      font-size: 22px;
+      min-height: 50px;
+    }
+
+    /* Power bar */
+    .power-container {
+      width: 80%;
+      height: 30px;
+      background: #222;
+      margin: 30px auto;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .power-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, red, orange, gold);
+      text-align: right;
+      padding-right: 10px;
+      line-height: 30px;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* glitter dots */
+    .sparkle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: gold;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fade 1s linear forwards;
+    }
+
+    @keyframes fade {
+      to {
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🔥 Nisarg Sojitra 🔥</h1>
+  <h2>The Math Expert Who Scares Calculators 😎</h2>
+
+  <div class="box">
+    <button onclick="showJoke()">Tell a Truth 😆</button>
+    <button onclick="increasePower()">Check Math Power 💪</button>
+  </div>
+
+  <div id="joke"></div>
+
+  <div class="power-container">
+    <div class="power-bar" id="powerBar">0%</div>
+  </div>
+
+  <script>
+    const jokes = [
+      "Nisarg Sir doesn’t solve math… math solves itself in fear 😎",
+      "Calculator uses Nisarg Sir for verification 😏",
+      "Even infinity asked Nisarg Sir for definition 🤯",
+      "Students: Sir doubt… Sir: Already solved in my mind 😌",
+      "Google searches answers… Nisarg Sir IS the answer 🔥",
+      "When Sir enters class, even π becomes rational 😂"
+    ];
+
+    function showJoke() {
+      const random = jokes[Math.floor(Math.random() * jokes.length)];
+      document.getElementById("joke").innerText = random;
+    }
+
+    let power = 0;
+
+    function increasePower() {
+      power += Math.floor(Math.random() * 30) + 10;
+      if (power > 100) power = 100;
+
+      const bar = document.getElementById("powerBar");
+      bar.style.width = power + "%";
+      bar.innerText = power + "%";
+
+      if (power === 100) {
+        document.getElementById("joke").innerText =
+          "⚡ MAX POWER! Nisarg Sir has reached GOD MODE 🚀";
+      }
+    }
+
+    // glitter effect
+    document.addEventListener("mousemove", function(e) {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = e.pageX + "px";
+      sparkle.style.top = e.pageY + "px";
+
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>
